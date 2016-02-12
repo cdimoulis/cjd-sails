@@ -25,7 +25,7 @@ module.exports = {
 
 
   getData: function (req,res) {
-    console.log('\n\nREQ:\n',keys(req),'\n\n');
+    console.log('\n\nREQ:\n',_.keys(req),'\n\n');
     data = {one: 'Data 1', two: 'Data 2', three: "Data 3"};
     console.log("\n\nSending ",data,"\n\n");
     return res.json(data);
