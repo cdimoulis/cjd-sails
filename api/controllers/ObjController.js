@@ -103,8 +103,6 @@ module.exports = {
     };
 
     var search = http.request(options, function(response){
-      console.log("Response sc",response.statusCode);
-      console.log("Response ",response);
       var responseData = '';
       response.setEncoding('utf8');
 
@@ -114,14 +112,12 @@ module.exports = {
       });
 
       response.on('end',function(){
-        console.log('end',arguments);
         try {
-          // res.locals.requestData = JSON.parse(responseData);
-          console.log("RESPONSE DATA",responseData);
           if(responseData.length)
             return res.json(JSON.parse(responseData));
           else
-            return res.json({error: "Empty Stuff"})
+            // 500 error
+            return res.serverError({error: "Empty Stuff"})
         }
         catch (e) {
           sails.log.warn('Could not parse response from ' + e);
