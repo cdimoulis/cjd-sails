@@ -6,9 +6,18 @@
     "test",
     "tests"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "moment": "^2.11.2",
+    "bootstrap": "^3.3.6"
+  },
   "name": "cjd-sails",
   "version": "0.0.0",
   "author": "chrisdimoulis",
-  "private": true
+  "private": true,
+  "exportsOverride": {
+    "jquery": {
+      "../js/dependencies/core": "dist/jquery.min.*"
+    }
+  }
 }
