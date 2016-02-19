@@ -32,7 +32,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': 'MainController.index',
+  '/': {
+    view: 'test'
+  },
+  '/party': 'MainController.party',
 
   'get /obj/party': 'ObjController.getData'
 
