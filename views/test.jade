@@ -2,9 +2,13 @@ doctype html
 html
   head
 
-    link(rel='stylesheet', href='/styles/importer.css')
-    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js')
-    script(type='text/javascript', src='http://underscorejs.org/underscore-min.js')
+
+    // STYLES
+    link(rel="stylesheet", href="/vendor/bootstrap/bootstrap-theme.css")
+    link(rel="stylesheet", href="/vendor/bootstrap/bootstrap.css")
+    link(rel="stylesheet", href="/vendor/font-awesome/font-awesome.css")
+    link(rel="stylesheet", href="/styles/importer.css")
+    // STYLES END
 
   body
 
@@ -23,4 +27,8 @@ html
     // SCRIPTS
     script(src="/js/dependencies/sails.io.js")
     script(src="/js/dependencies/core/jquery/jquery.min.js")
+    script(src="/js/dependencies/core/underscore/underscore.js")
+    script(src="/js/dependencies/core/backbone/backbone.js")
+    script(src="/vendor/bootstrap/bootstrap.js")
+    script(src="/vendor/moment/moment.js")
     // SCRIPTS END
