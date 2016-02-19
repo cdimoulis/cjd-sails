@@ -17,6 +17,7 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
+  'vendor/**/*.css',
   'styles/**/*.css'
 ];
 
@@ -28,14 +29,41 @@ var jsFilesToInject = [
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
 
-  // Dependencies like jQuery, or Angular are brought in here
+  /*
+  * Order required dependencies
+  */
+  'js/dependencies/core/jquery/jquery.min.js',
+  'js/dependencies/core/underscore/underscore.js',
+  'js/dependencies/core/backbone/backbone.js',
+
+
+
+
+  // The rest of the dependencies
   'js/dependencies/**/*.js',
+
+
+
+  /*
+  * Order required vendor
+  */
+
+
+  
+  // The rest of the vendor files
+  'vendor/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
   'js/**/*.js'
 ];
 
+
+/********
+* YOU CAN IGNORE THE NEXT COMMENT IF YOU SETUP YOUR FILE PATH AND
+* THE PATH LISTED BELOW WITH MODULE EXPORTS TO MATCH THE DEST IN YOUR
+* JADE GRUNT TASK
+*********/
 
 // Client-side HTML templates are injected using the sources below
 // The ordering of these templates shouldn't matter.
@@ -47,9 +75,10 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
-  'templates/**/*.html'
+  // This path is relative to the path decided below in the module exports.
+  // The compbination route should match dest in jade grunt task
+  'templates/**/*.js'
 ];
-
 
 
 
@@ -69,7 +98,13 @@ module.exports.jsFilesToInject = jsFilesToInject.map(function(jsPath) {
   return require('path').join('.tmp/public/', jsPath);
 });
 module.exports.templateFilesToInject = templateFilesToInject.map(function(tplPath) {
-  return require('path').join('assets/',tplPath);
+  // This will allow us to inject js files that are compiled from jade assets
+  // and placed in the .tmp templates folder
+  // Ultimately it needs to match dest in your jade grunt task
+  return require('path').join('.tmp/public/',tplPath);
+
+  // Originally...
+  // return require('path').join('assets/',tplPath);
 });
 
 

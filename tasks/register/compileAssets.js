@@ -13,8 +13,10 @@
  */
 module.exports = function(grunt) {
   grunt.registerTask('compileAssets', [
+		'bower:install',
     'clean:dev',
     'jst:dev',
+    'jade:dev',  // THIS IS TO RUN THE JADE GRUNT TASK FOR CLIENT SIDE TEMPLATES
     'less:dev',
     'copy:dev',
     'coffee:dev'

@@ -7,8 +7,8 @@
 
 module.exports = {
 	 
-   index: function (req, res) {
-    return res.view("test",{});
+   party: function (req, res) {
+    return res.view("test",{party: "I am man!"});
    }
 
 };

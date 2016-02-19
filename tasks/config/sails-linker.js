@@ -265,7 +265,11 @@ module.exports = function(grunt) {
       }
     },
 
-    // Bring in JST template object
+    /*
+    * Change this so that we can use the pipeline like with js and css files
+    * Under files use the require statement for the pipeline.
+    * Also note you will need eo make changes to the pipeline.js file
+    */
     devTplJade: {
       options: {
         startTag: '// TEMPLATES',
@@ -274,7 +278,7 @@ module.exports = function(grunt) {
         appRoot: '.tmp/public'
       },
       files: {
-        'views/**/*.jade': ['.tmp/public/jst.js']
+        'views/**/*.jade': require('../pipeline').templateFilesToInject
       }
     }
   });
