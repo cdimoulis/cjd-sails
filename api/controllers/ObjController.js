@@ -8,19 +8,37 @@
 module.exports = {
 	
   test: function (req,res) {
-    console.log('\n\nTEST FUNCTION!\n\n');
-    template = "\
-    <html>\
-      <head>\
-        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js'></script>\
-        <script src='http://underscorejs.org/underscore-min.js'></script>\
-      </head>\
-      <body>\
-        Test Worked\
-      </body>\
-    </html>\
-    ";
-    return res.send(template);
+    var obj_1,obj_2;
+
+    Obj.count().exec(function (err,results){
+      console.log('res',results);
+      // return res.ok();
+    });
+
+    var cb = function (obj1, obj2) {
+      if(obj1 && obj2){
+        Obj.showObjs(obj1,obj2);
+        return res.ok();
+      }
+    }
+
+    Obj.findOne({text:'FirstObj'}).exec(function (err,obj) {
+      if (err) {
+        return res.negotiate(err);
+      }
+      sails.log.info('Found 1',obj);
+      obj_1 = obj;
+      cb(obj_1,obj_2);
+    });
+
+    Obj.findOne({text: 'SecondObj'}).exec(function (err,obj) {
+      if (err) {
+        return res.negotiate(err);
+      }
+      sails.log.info('Found 2',obj);
+      obj_2 = obj;
+      cb(obj_1,obj_2);
+    });
   },
 
 
