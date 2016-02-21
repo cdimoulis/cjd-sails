@@ -10,11 +10,10 @@ var BaseModel = require('../lib/models/BaseModel');
 module.exports = _.merge( {}, BaseModel, {
 
   attributes: {
-    description: {
-      type: 'text'
+    text: {
+      type: 'string'
     }
   }
 
 });
 
-console.log('obj BaseModel', BaseModel);

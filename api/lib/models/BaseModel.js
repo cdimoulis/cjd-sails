@@ -16,9 +16,6 @@ module.exports = {
       unique: true,
       required: true,
       defaultsTo: function() { return uuid.v4(); }
-    },
-    text: {
-      type: 'string'
     }
   },
 
