@@ -14,7 +14,11 @@ module.exports = function(grunt) {
       options: {
         pretty: true,
         client: true,
-        namespace: "Jade.Templates"     // Think like accessing a JSON object
+        namespace: "Jade.Templates",     // Think like accessing a JSON object
+        processName: function (dir) {
+          str = dir.replace('assets/templates','');
+          return str;
+        }
       },
       files: [{
         expand: true,
