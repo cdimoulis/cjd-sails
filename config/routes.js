@@ -37,7 +37,13 @@ module.exports.routes = {
   },
   '/party': 'MainController.party',
 
-  'get /obj/party': 'ObjController.getData'
+  'GET /getSubdomains': function(req, res) {
+    sails.log.info('subdomains in router', req.subdomains);
+    // Programmatically access and call desired controller method
+    sails.controllers.main.getSubdomains(req, res);
+  },
+
+  'GET /obj/party': 'ObjController.getData'
 
   /***************************************************************************
   *                                                                          *
