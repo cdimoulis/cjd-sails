@@ -33,7 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'test'
+    view: 'index'
   },
   '/party': 'MainController.party',
 

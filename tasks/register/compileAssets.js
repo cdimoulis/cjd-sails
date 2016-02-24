@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 		'bower:install',
     'clean:dev',
     'jst:dev',
-    'jade:dev',  // THIS IS TO RUN THE JADE GRUNT TASK FOR CLIENT SIDE TEMPLATES
+    'handlebars:dev',  // THIS IS TO RUN THE HANDLEBARS GRUNT TASK FOR CLIENT SIDE TEMPLATES
     'less:dev',
     'copy:dev',
     'coffee:dev'

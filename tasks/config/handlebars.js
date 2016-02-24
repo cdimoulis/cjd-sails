@@ -1,5 +1,5 @@
 /**
- * `jade`
+ * `handlebars`
  *
  * ---------------------------------------------------------------
  *
@@ -9,26 +9,24 @@
  */
 module.exports = function(grunt) {
 
-  grunt.config.set('jade', {
+  grunt.config.set('handlebars', {
     dev: {
       options: {
-        pretty: true,
-        client: true,
-        namespace: "Jade.Templates",     // Think like accessing a JSON object
+        namespace: "Handlebars.Templates",
         processName: function (dir) {
-          str = dir.replace('assets/templates','');
+          str = dir.replace('assets/templates/','').replace('.handlebars','');
           return str;
         }
       },
       files: [{
         expand: true,
-        cwd: 'assets/templates/',    // Where the jade files are found
-        src: ['**/*.jade'],
-        dest: '.tmp/public/templates/',  // Where you want compile files to go
+        cwd: 'assets/templates/',
+        src: ['**/*.handlebars'],
+        dest: '.tmp/public/templates/',
         ext: '.js'
       }]
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
 };

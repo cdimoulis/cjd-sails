@@ -163,6 +163,31 @@ module.exports = function(grunt) {
       }
     },
 
+    devDependenciesJsJade: {
+      options: {
+        startTag: '// DEPENDENCIES',
+        endTag: '// END DEPENDENCIES',
+        fileTmpl: 'script(src="%s")',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jade': require('../pipeline').jsDependenciesToInject
+      }
+    },
+
+    devDependenciesJsRelativeJade: {
+      options: {
+        startTag: '// DEPENDENCIES',
+        endTag: '// END DEPENDENCIES',
+        fileTmpl: 'script(src="%s")',
+        appRoot: '.tmp/public',
+        relative: true
+      },
+      files: {
+        'views/**/*.jade': require('../pipeline').jsDependenciesToInject
+      }
+    },
+
     devJsJade: {
       options: {
         startTag: '// SCRIPTS',

@@ -22,26 +22,29 @@ var cssFilesToInject = [
 ];
 
 
+var jsDependenciesToInject = [
+  /*
+  * Order required dependencies
+  */
+  'js/dependencies/core/jquery/jquery.min.js',
+  'js/dependencies/core/handlebars/handlebars.js',
+  'js/dependencies/core/underscore/underscore.js',
+  'js/dependencies/core/backbone/backbone.js',
+
+
+
+  // The rest of the dependencies
+  'js/dependencies/**/*.js'
+
+];
+
+
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
 
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
-
-  /*
-  * Order required dependencies
-  */
-  'js/dependencies/core/jquery/jquery.min.js',
-  'js/dependencies/core/underscore/underscore.js',
-  'js/dependencies/core/backbone/backbone.js',
-
-
-
-
-  // The rest of the dependencies
-  'js/dependencies/**/*.js',
-
 
 
   /*
@@ -53,9 +56,23 @@ var jsFilesToInject = [
   // The rest of the vendor files
   'vendor/**/*.js',
 
+
+
+  /**********
+  * Application specific requirements
+  ***********/
+  'js/libs/**/*.js',
+  
+  'js/application/application.js',
+  'js/application/init.js',
+  'js/application/router.js',  
+
+
+  'js/application/**/*.js'
+
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/**/*.js'
+  // 'js/**/*.js'
 ];
 
 
@@ -93,6 +110,9 @@ var tmpPath = '.tmp/public/';
 // they reside in the first place)
 module.exports.cssFilesToInject = cssFilesToInject.map(function(cssPath) {
   return require('path').join('.tmp/public/', cssPath);
+});
+module.exports.jsDependenciesToInject = jsDependenciesToInject.map(function(depPath) {
+  return require('path').join('.tmp/public/', depPath);
 });
 module.exports.jsFilesToInject = jsFilesToInject.map(function(jsPath) {
   return require('path').join('.tmp/public/', jsPath);
