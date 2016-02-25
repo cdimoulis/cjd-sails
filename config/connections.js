@@ -79,6 +79,11 @@ module.exports.connections = {
     adapter: 'sails-postgresql',
     url: process.env.DATABASE_URL,
     pool: 20
+  },
+
+  redis: {
+    adapter: 'sails-redis',
+    url: process.env.REDIS_URL
   }
 
 
