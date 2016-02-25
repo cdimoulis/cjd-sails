@@ -3,11 +3,16 @@ Handlebars.registerHelper('view', function(a,b){
     throw "Could not find a view named: "+a
     return 
   }
+  
   var view = new App.Views[a](b);
   if (!view.template){
     throw "View "+a+" does not have a template"
     return
   }
-  var str = new Handlebars.SafeString(view.template(view));
+
+  view.render();
+  var html = view.$el.wrap('<temp>').parent().html();
+  var str = new Handlebars.SafeString(html);
+
   return str;
 });

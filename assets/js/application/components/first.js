@@ -1,5 +1,9 @@
 App.View.extend({
   name: 'components/first',
+  
+  attributes:{
+    'class': 'component'
+  },
   init_functions: [
     'setup'
   ],
