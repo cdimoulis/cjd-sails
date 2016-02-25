@@ -16,18 +16,17 @@ this.Application = function (options) {
   this.Model = Backbone.Model.extend();
 
   this.setPage = function (page) {
+    // Remove the page if one is currently being shown.
+    if (!!_current_page){
+      _current_page.remove();
+      _current_page = null;
+    }
+
+    // Add page if exists
     if (!!page){
       page.render();
-
-      // Remove the page if one is currently being shown.
-      if (!!_current_page){
-        _current_page.remove();
-      }
       _current_page = page;
       page.appendTo("#page");
-    }
-    else{
-      $('#page').html('');
     }
   };
 
