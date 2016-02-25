@@ -1,6 +1,7 @@
 this.Application = function (options) {
 
   var _router = null;
+  var _current_page = null;
   
   this.Models = {};
   this.Collections = {};
@@ -17,6 +18,12 @@ this.Application = function (options) {
   this.setPage = function (page) {
     if (!!page){
       page.render();
+
+      // Remove the page if one is currently being shown.
+      if (!!_current_page){
+        _current_page.remove();
+      }
+      _current_page = page;
       page.appendTo("#page");
     }
     else{
@@ -76,6 +83,12 @@ this.Application = function (options) {
         // Setup the router
         if (_.has(_this.Routers, "Application")){
           _router = new _this.Routers.Application();
+        }
+
+        var location = window.location.hash;
+
+        if (!!location){
+          _router.loadPage(location.replace('#page/',''));
         }
       }); //End Defer
 
