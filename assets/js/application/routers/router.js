@@ -8,7 +8,10 @@ Backbone.Router.extend({
     var page;
     if (!!App.Pages['pages/'+page_name]){
       page = new App.Pages['pages/'+page_name]();
+      App.setPage(page);
     }
-    App.setPage(page);
+    else{
+      this.navigate('page/index',{trigger:true});
+    }
   }
 });

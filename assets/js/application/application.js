@@ -2,12 +2,12 @@ this.Application = function (options) {
 
   var _router = null;
   var _current_page = null;
-  
+
   this.Models = {};
   this.Collections = {};
   this.Views = {};
   this.Pages = {};
-  this.Routers = {}; 
+  this.Routers = {};
 
   this.View = Backbone.View.extend();
   this.Page = this.View.extend();
@@ -36,7 +36,7 @@ this.Application = function (options) {
 
   /*****
   * Adjust the extend function of backbone's classes
-  * This change will allow the Application object to 
+  * This change will allow the Application object to
   * store all the created classes (i.e. models, collections, views)
   ******/
   var _registerClass = function (cls, hash) {
@@ -88,6 +88,9 @@ this.Application = function (options) {
 
         if (!!location){
           _router.loadPage(location.replace('#page/',''));
+        }
+        else{
+          _router.navigate('page/index',{trigger:true});
         }
       }); //End Defer
 

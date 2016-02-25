@@ -1,11 +1,19 @@
 App.Page.extend({
   name: "pages/temp",
 
-  test: "this is a test",
+  init_functions: [
+    'setup'
+  ],
 
-  config: {
-    a: 'First',
-    b: 'Component'
+
+  setup: function() {
+    
+    this.test = "this is a test";
+
+    this.config = {
+      a: 'First',
+      b: 'Component'
+    };
   }
 
 });
