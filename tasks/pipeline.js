@@ -65,7 +65,9 @@ var jsFilesToInject = [
   
   'js/application/application.js',
   'js/application/init.js',
-  'js/application/router.js',  
+  'js/application/router.js',
+  'js/application/models/*.js',
+  'js/application/collections/*.js',
 
 
   'js/application/**/*.js'
