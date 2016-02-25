@@ -38,5 +38,8 @@
     "url": "git://github.com/chrisdimoulis/cjd-sails.git"
   },
   "author": "chrisdimoulis",
-  "license": ""
+  "license": "",
+  "engines":{
+    "node": "4.3.1"
+  }
 }
