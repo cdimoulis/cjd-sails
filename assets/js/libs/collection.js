@@ -7,8 +7,8 @@ Backbone.Collection = Backbone.Collection.extend({
       url += this.parent.url();
     }
 
-    if (!!this.model){
-      url += this.model.urlRoot;
+    if (!!this.urlRoot){
+      url += this.urlRoot;
     }
 
     return url;
