@@ -30,7 +30,8 @@
   "keywords": [],
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "bower install"
   },
   "main": "app.js",
   "repository": {
@@ -39,7 +40,7 @@
   },
   "author": "chrisdimoulis",
   "license": "",
-  "engines":{
+  "engines": {
     "node": "4.3.1"
   }
 }
