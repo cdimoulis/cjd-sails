@@ -13,14 +13,13 @@ Backbone.View = Backbone.View.extend({
     this._processAttributes();
   },
 
-
   _processData: function(hash) {
-    var val,
-    _this = this,
+    var _this = this,
     data = hash.data || {};
 
     _.each(this.data_source, function(source) {
-
+      var val;
+      // If required check exists
       if (source.required){
         if (_.isUndefined(data[source.key]) || _.isNull(data[source.key])){
           throw 'View '+_this.name+' requires data source '+source.key;
@@ -29,6 +28,20 @@ Backbone.View = Backbone.View.extend({
       }
 
       val = data[source.key];
+
+      // If options check included
+      if (!_.isUndefined(source.options) && !_.isNull(source.options) &&
+          !_.isEmpty(source.options) && !_.isUndefined(val) && !_.isNull(val)){
+
+        if (!_.contains(source.options,val)){
+          console.warn('In view '+_this.name+' data source '+source.key+
+                      ' is restricted to options ['+source.options+']. '+
+                      'Instead found: '+val+'.');
+          val = null;
+        }
+      }
+
+      // If does not exists then use default
       if (_.isUndefined(val) || _.isNull(val)){
         val = source.default;
       }
