@@ -3,8 +3,10 @@ Backbone.View = Backbone.View.extend({
   initialize: function(options){
     var _this = this;
     options = options || {}
+
     this.template = App.Templates[this.name];
     this.data = {};
+    this.children = {};
 
     this._processData(options.hash || {});
     this._processInitFunctions();
@@ -13,7 +15,7 @@ Backbone.View = Backbone.View.extend({
 
 
   _processData: function(hash) {
-    var val, 
+    var val,
     _this = this,
     data = hash.data || {};
 
@@ -33,7 +35,6 @@ Backbone.View = Backbone.View.extend({
 
       _this.data[source.key] = val
     });
-
   },
 
   _processInitFunctions: function() {
@@ -57,10 +58,27 @@ Backbone.View = Backbone.View.extend({
 
   _processAttributes: function() {
     this.$el.attr('data-view-name',this.name);
+    this.$el.attr('data-view-cid',this.cid);
+  },
+
+  _appendChildView: function(view) {
+    // Find the placeholder for where to put the view's markup
+    var selector = view.tagName+'[data-view-name="'+view.name+'"]'+
+                                '[data-view-cid="'+view.cid+'"]';
+    var $placeholder = this.$el.find(selector);
+    view.render();
+    $placeholder.replaceWith(view.$el);
   },
 
   render: function() {
+    var _this = this;
     this.$el.html(this.template(this));
+
+    // Add the children in their dom place
+    _.each(this.children,function(view,key){
+      _this._appendChildView(view);
+    });
+
     return this;
   },
 

@@ -1,9 +1,14 @@
 App.View.extend({
   name: 'components/first',
-  
+
   attributes:{
     'class': 'component'
   },
+
+  events:{
+    'click': '_onClick'
+  },
+
   init_functions: [
     'setup'
   ],
@@ -17,5 +22,9 @@ App.View.extend({
 
   setup: function() {
     console.log('setup function for',this.name);
-  }
+  },
+
+  _onClick: function() {
+    console.log('I was clicked');
+  },
 })
