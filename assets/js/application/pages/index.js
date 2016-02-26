@@ -14,19 +14,21 @@ App.Page.extend({
     c.first_button = {
       text: 'First',
       ripple: true,
-      style: 'primary',
+      color: 'primary',
       event_handler: this.firstButtonClicked
     };
 
     c.second_button = {
       text: 'Second',
       ripple: true,
+      color: 'accent',
     };
 
     c.third_button = {
-      text: 'Third',
+      text: 'flight_takeoff',
       raised: false,
-      style: 'accent',
+      style: 'fab-mini',
+      color: 'primary',
     };
   },
 
