@@ -2,10 +2,11 @@ App.Page.extend({
   name: 'pages/index',
 
   init_functions: [
-    'setup'
+    'setupButtons',
+    'setupInputs',
   ],
 
-  setup: function(){
+  setupButtons: function(){
 
     _.bindAll(this,'firstButtonClicked');
 
@@ -34,6 +35,20 @@ App.Page.extend({
 
   firstButtonClicked: function() {
     console.log('First button event listener',arguments);
+  },
+
+  setupInputs: function() {
+
+    m = new App.Model({text:''});
+    this.listenTo(m,'change',function(){
+      console.log('model text:', m.get('text'));
+    })
+
+    this.components.input_one = {
+      model: m,
+      attribute: 'text',
+      label: 'Name',
+    };
   },
 
 });
