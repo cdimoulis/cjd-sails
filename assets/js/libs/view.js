@@ -91,6 +91,8 @@ Backbone.View = Backbone.View.extend({
     _.each(this.children,function(view,key){
       _this._appendChildView(view);
     });
+
+    // Register dynamic elements for mdl
     componentHandler.upgradeElement(this.el);
     return this;
   },
