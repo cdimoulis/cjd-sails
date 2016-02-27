@@ -1,4 +1,13 @@
-<input class='mdl-textfield__input' type='text' id='{{display.id}}'>
+{{#if display.pattern}}
+<input class='mdl-textfield__input' type='text' id='{{display.id}}' value='{{display.value}}' pattern='{{display.pattern}}'>
+{{else}}
+<input class='mdl-textfield__input' type='text' id='{{display.id}}' value='{{display.value}}'>
+{{/if}}
 <label class='mdl-textfield__label' for='{{display.id}}'>
   {{display.label}}
 </label>
+{{#if display.error_msg}}
+<span class='mdl-textfield__error'>
+  {{display.error_msg}}
+</span>
+{{/if}}
