@@ -33,6 +33,13 @@ App.View.extend({
       label: 'Phone Number',
       pattern: 'phone_number',
       error_msg: "Not a valid phone number",
-    }
+    };
+
+    c.input_four = {
+      model: m,
+      attribute: 'fourth',
+      label: 'Description',
+      float_label: true,
+    };
   },
 });
