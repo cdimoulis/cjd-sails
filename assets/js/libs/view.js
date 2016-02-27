@@ -91,7 +91,7 @@ Backbone.View = Backbone.View.extend({
     _.each(this.children,function(view,key){
       _this._appendChildView(view);
     });
-
+    componentHandler.upgradeElement(this.el);
     return this;
   },
 

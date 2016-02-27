@@ -15,7 +15,10 @@ App.View.extend({
     {key: 'text', required: true},
     {key: 'raised', required: false, default: true, options: [true,false]},
     {key: 'ripple', required: false, default: true, options: [true,false]},
-    {key: 'style', required: false, options: ['primary','accent']},
+    {key: 'color', required: false, default: true, options: ['primary','accent']},
+    {key: 'style', required: false, options: ['fab','fab-mini','icon']},
+    {key: 'fab', required: false, default: false, options: [true,false]},
+    {key: 'icon', required: false, default: false, options: [true,false]},
     {key: 'event_handler', required: false},
   ],
 
@@ -25,6 +28,7 @@ App.View.extend({
 
     this.display = {}
     this.display.text = this.data.text;
+    this.display.icon = false;
   },
 
   determinClasses: function() {
@@ -32,13 +36,32 @@ App.View.extend({
       this.$el.addClass('mdl-button--raised');
     }
 
-    switch(this.data.style) {
+    switch(this.data.color) {
       case 'primary': {
         this.$el.addClass('mdl-button--primary');
         break;
       }
       case 'accent': {
         this.$el.addClass('mdl-button--accent');
+        break;
+      }
+    }
+
+    switch(this.data.style){
+      case 'fab': {
+        this.$el.addClass('mdl-button--fab');
+        this.display.icon = true;
+        break;
+      }
+      case 'fab-mini': {
+        this.$el.addClass('mdl-button--fab');
+        this.$el.addClass('mdl-button--mini-fab');
+        this.display.icon = true;
+        break;
+      }
+      case 'icon': {
+        this.$el.addClass('mdl-button--icon');
+        this.display.icon = true;
         break;
       }
     }
