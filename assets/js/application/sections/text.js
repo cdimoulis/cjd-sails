@@ -3,6 +3,7 @@ App.View.extend({
 
   init_functions: [
     'setupInputs',
+    'setupExpandables',
   ],
 
   setupInputs: function(){
@@ -40,6 +41,26 @@ App.View.extend({
       attribute: 'fourth',
       label: 'Description',
       float_label: true,
+      rows: 3,
+    };
+  },
+
+  setupExpandables: function() {
+    c = this.components;
+    m = new App.Model({});
+
+    c.expand_one = {
+      model: m,
+      attribute: 'name',
+      label: 'Name',
+      icon: 'person',
+    };
+
+    c.expand_two = {
+      model: m,
+      attribute: 'example',
+      label: 'Example',
+      icon: 'help',
     };
   },
 });
