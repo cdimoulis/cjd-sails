@@ -4,7 +4,7 @@ App.View.extend({
     'class': 'mdl-textfield mdl-js-textfield',
   },
   events: {
-    'input input': '_onInput',
+    'input textarea': '_onInput',
   },
   data_source:[
     {key: 'model', required: true},

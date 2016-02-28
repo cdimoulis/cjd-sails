@@ -9,8 +9,8 @@ App.View.extend({
   setupInputs: function(){
     this.components = c = {};
     m = new App.Model({first:'', second: 'Dimoulis'});
-    this.listenTo(m,'change:second',function(model,change){
-      console.log('model second change',change);
+    this.listenTo(m,'change:fourth',function(model,change){
+      console.log('model fourth change',change);
     });
 
     c.input_one = {
