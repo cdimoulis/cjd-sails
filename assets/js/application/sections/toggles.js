@@ -5,6 +5,7 @@ App.View.extend({
     'setupCheckboxes',
     'setupRadios',
     'setupIcons',
+    'setupSwitches',
   ],
 
   setupCheckboxes: function(){
@@ -46,18 +47,35 @@ App.View.extend({
   setupIcons: function(){
     c = this.components;
     m = new App.Model({power: true});
-    window.model = m;
 
     c.icon_one = {
       model: m,
       attribute: 'bold',
-      icon: 'B'
+      icon: 'format_bold'
     };
 
     c.icon_two = {
       model: m,
       attribute: 'power',
       icon: 'power_settings_new',
+    };
+  },
+
+  setupSwitches: function(){
+    c = this.components;
+    m = new App.Model({power: true});
+    window.model = m;
+
+    c.switch_one = {
+      model: m,
+      attribute: 'power',
+      icon: 'alarm',
+    };
+
+    c.switch_two = {
+      model: m,
+      attribute: 'on',
+      label: 'Power',
     };
   },
 });

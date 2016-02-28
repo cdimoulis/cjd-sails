@@ -1,0 +1,15 @@
+{{#if _isChecked}}
+<input type='checkbox' id='{{display.id}}' class='mdl-switch__input' checked>
+{{else}}
+<input type='checkbox' id='{{display.id}}' class='mdl-switch__input'>
+{{/if}}
+{{#if display.label}}
+<label class='mdl-switch__label' for='{{display.id}}'>
+  {{display.label}}
+</label>
+{{/if}}
+{{#if display.icon}}
+<span class='mdl-switch__label material-icons'>
+  {{display.icon}}
+</span>
+{{/if}}
