@@ -1,3 +1,10 @@
+/****
+* NOTE
+* Radio groups are based on passing the same model
+* and attribute name to multiple radio buttons on a page.
+* Value is required to know what value should be placed in three
+* model's attribute when selection occurs
+****/
 App.View.extend({
   name: 'components/toggle/radio',
   tagName: 'label',
