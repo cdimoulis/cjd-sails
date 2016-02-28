@@ -33,13 +33,14 @@ App.View.extend({
   },
 
   _handleModelChange: function(model,value) {
-    console.log(this._isChecked,value);
-    // this._isChecked = value
-    // if (this._isChecked){
-    //   this._setChecked();
-    // }
-    // else{
-    //   this._setUnchecked();
+    // if (this._isChecked != value){
+    this._isChecked = value;
+    if (this._isChecked){
+      this._setChecked();
+    }
+    else{
+      this._setUnchecked();
+    }
     // }
   },
 

@@ -96,7 +96,7 @@ Backbone.View = Backbone.View.extend({
     });
 
     // Register dynamic elements for mdl
-    componentHandler.upgradeElement(this.el);
+    componentHandler.upgradeElements(this.el);
     return this;
   },
 
