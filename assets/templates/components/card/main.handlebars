@@ -1,0 +1,20 @@
+<div class='mdl-card__title'>
+  <h2 class='mdl-card__title-text'>
+    <strong>{{display.title}}</strong>
+  </h2>
+</div>
+<div class='mdl-card__menu'>
+  {{#each display.menu_icon_buttons}}
+  {{view 'components/button/primary' data=this}}
+  {{/each}}
+</div>
+<div class="mdl-card__supporting-text">
+  {{display.content}}
+</div>
+{{#if display.footer_actions}}
+<div class="mdl-card__actions mdl-card--border">
+  {{#each display.footer_actions}}
+  {{view 'components/button/primary' data=this}}
+  {{/each}}
+</div>
+{{/if}}

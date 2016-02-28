@@ -3,7 +3,7 @@
  *
  * ---------------------------------------------------------------
  *
- * Compile Jade files located in `assets/templates` into js templates
+ * Compile handlebars files located in `assets/templates` into js templates
  * and generate new `.js` files in `.tmp/public/templates`.
  *
  */

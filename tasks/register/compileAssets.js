@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     'jst:dev',
     'handlebars:dev',  // THIS IS TO RUN THE HANDLEBARS GRUNT TASK FOR CLIENT SIDE TEMPLATES
     'less:dev',
+    'sass:dev',
     'copy:dev',
     'coffee:dev'
   ]);

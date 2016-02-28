@@ -1,0 +1,14 @@
+<div class='mdl-card__title mdl-card--expand mdl-color--primary'>
+  <h4>
+    {{{display.title}}}
+  </h4>
+</div>
+{{#if display.footer_action}}
+<div class="mdl-card__actions mdl-card--border mdl-color--primary">
+  {{view 'components/button/primary' data=display.footer_action}}
+  <div clas='mdl-layout-spacer'></div>
+  <i class='material-icons'>
+    {{display.footer_icon}}
+  </i>
+</div>
+{{/if}}
