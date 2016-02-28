@@ -8,7 +8,7 @@
  */
 module.exports = function(grunt) {
 
-  grunt.config.set('scss', {
+  grunt.config.set('sass', {
     dev: {
       options: {
         trace: true,
