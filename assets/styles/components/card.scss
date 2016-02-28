@@ -1,0 +1,33 @@
+.cjd-card {
+  > .mdl-card__title{
+    color: white;
+    height: 150px;
+    background: url('../../images/push_button.jpg') center/cover #46B6AC;
+  }
+  > .mdl-card_menu {
+    color: white;
+    .material-icons {
+      color: white;
+    }
+  }
+}
+
+.simple-card {
+  > .mdl-card__title{
+    color: white !important;
+    > h4 {
+      margin-top: 0;
+    }
+  }
+
+  > .mdl-card__actions {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    color: white;
+
+    > .mdl-button {
+      color: white !important;
+    }
+  }
+}
