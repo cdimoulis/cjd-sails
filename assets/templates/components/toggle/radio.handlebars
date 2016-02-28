@@ -1,0 +1,8 @@
+{{#if _isChecked}}
+<input type='radio' id='{{display.id}}' class='mdl-radio__button' name='{{display.group}}' value='{{display.value}}' checked>
+{{else}}
+<input type='radio' id='{{display.id}}' class='mdl-radio__button' name='{{display.group}}' value='{{display.value}}'>
+{{/if}}
+<span class='mdl-radio__label'>
+  {{display.label}}
+</span>

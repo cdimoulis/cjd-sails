@@ -1,34 +1,20 @@
 App.View.extend({
-  name: 'components/text/input',
+  name: 'components/text/area',
   attributes:{
     'class': 'mdl-textfield mdl-js-textfield',
   },
   events: {
-    'input input': '_onInput',
-  },
-  _standard_patterns: {
-    alpha: '[A-Z,a-z]*',
-    capital_alpha: '[A-Z]*',
-    lower_alpha: '[a-z]*',
-    alpha_numeric: '[A-Z,a-z,0-9]*',
-    numeric: '-?[0-9]*(\\.[0-9]+)?',
-    numeric_positive: '[0-9]*(\\.[0-9]+)?',
-    numeric_whole: '-?[0-9]*',
-    numeric_whole_positive: '[0-9]*',
-    phone_number: '((\\()?[2-9]{1}\\d{2}(\\))?-)?[2-9]{1}\\d{2}-\\d{4}',
-    ssn: '[1-9]{3}-[1-9]{2}-[1-9]{4}'
+    'input textarea': '_onInput',
   },
   data_source:[
     {key: 'model', required: true},
     {key: 'attribute', required: true},
     {key: 'label', required: false, default: ''},
     {key: 'float_label', required: false, default: false},
-    {key: 'pattern', required: false},
-    {key: 'error_msg', required: false},
+    {key: 'rows', required: false, default: 5},
   ],
   init_functions:[
     'setup',
-    'setupPattern',
   ],
 
   setup: function() {
@@ -36,8 +22,9 @@ App.View.extend({
     
     this.display = {};
     this.display.label = this.data.label;
-    this.display.id = this.cid+'text_input';
+    this.display.id = this.cid+'text_area';
     this.display.value = this.data.model.get(this.data.attribute);
+    this.display.rows = this.data.rows;
 
     if (this.data.float_label) {
       this.$el.addClass('mdl-textfield--floating-label');
@@ -47,20 +34,9 @@ App.View.extend({
                   this._handleModelUpdate);
   },
 
-  setupPattern: function() {
-    this.display.error_msg = this.data.error_msg;
-
-    if (!!this.data.pattern && !!this._standard_patterns[this.data.pattern]) {
-      this.display.pattern = this._standard_patterns[this.data.pattern];
-    }
-    else {
-      this.display.pattern = this.data.pattern;
-    }
-  },
-
-  _handleModelUpdate: function(model,value){
+  _handleModelUpdate: function() {
     var val = this.data.model.get(this.data.attribute);
-    this.$el.find('input#'+this.display.id).val(val);
+    this.$el.find('textarea#'+this.display.id).val(val);
     if (_.isEmpty(val)){
       this.$el.removeClass('is-dirty');
     }

@@ -1,6 +1,9 @@
 Backbone.View = Backbone.View.extend({
 
   initialize: function(options){
+    _.bindAll(this,'_processData','_processInitFunctions','_processAttributes',
+              '_addChildView','render','appendTo');
+
     var _this = this;
     options = options || {}
 
@@ -74,7 +77,7 @@ Backbone.View = Backbone.View.extend({
     this.$el.attr('data-view-cid',this.cid);
   },
 
-  _appendChildView: function(view) {
+  _addChildView: function(view) {
     // Find the placeholder for where to put the view's markup
     var selector = view.tagName+'[data-view-name="'+view.name+'"]'+
                                 '[data-view-cid="'+view.cid+'"]';
@@ -89,11 +92,11 @@ Backbone.View = Backbone.View.extend({
 
     // Add the children in their dom place
     _.each(this.children,function(view,key){
-      _this._appendChildView(view);
+      _this._addChildView(view);
     });
 
     // Register dynamic elements for mdl
-    componentHandler.upgradeElement(this.el);
+    componentHandler.upgradeElements(this.el);
     return this;
   },
 
