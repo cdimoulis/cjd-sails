@@ -1,0 +1,10 @@
+.cjd-card > .mdl-card__title {
+  color: white;
+  height: 150px;
+  background:
+    url('../../images/push_button.jpg') center/cover #46B6AC;
+}
+
+.cjd-card > .mdl-card__menu .material-icons{
+  color: white;
+}
