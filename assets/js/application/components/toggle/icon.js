@@ -1,15 +1,8 @@
-/****
-* NOTE
-* Radio groups are based on passing the same model
-* and attribute name to multiple radio buttons on a page.
-* Value is required to know what value should be placed in three
-* model's attribute when selection occurs
-****/
 App.View.extend({
-  name: 'components/toggle/radio',
+  name: 'components/toggle/icon',
   tagName: 'label',
   attributes:{
-    'class': 'mdl-radio mdl-js-radio mdl-js-ripple-effect',
+    'class': 'mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect',
   },
   events: {
     'click input': '_onChange',
@@ -17,8 +10,7 @@ App.View.extend({
   data_source:[
     {key: 'model', required: true},
     {key: 'attribute', required: true},
-    {key: 'value', required: true},
-    {key: 'label', required: false, default: ''},
+    {key: 'icon', required: true},
   ],
   init_functions:[
     'setup',
@@ -28,13 +20,11 @@ App.View.extend({
   setup: function() {
     _.bindAll(this, '_onChange','_handleModelChange');
     this.display = {};
-    this.display.id = this.cid+'radio';
-    this.display.label = this.data.label;
-    this.display.group = this.data.model.cid+""+this.data.attribute
-    this.display.value = this.data.value;
+    this.display.id = this.cid+'toggle_icon';
+    this.display.icon = this.data.icon;
     this.$el.attr('for',this.display.id);
 
-    this._isChecked = this.data.model.get(this.data.attribute) == this.data.value;
+    this._isChecked = this.data.model.get(this.data.attribute);
   },
 
   setupListeners: function() {
@@ -43,13 +33,14 @@ App.View.extend({
   },
 
   _handleModelChange: function(model,value) {
-    this._isChecked = value == this.data.value
-    if (this._isChecked){
-      this._setChecked();
-    }
-    else{
-      this._setUnchecked();
-    }
+    console.log(this._isChecked,value);
+    // this._isChecked = value
+    // if (this._isChecked){
+    //   this._setChecked();
+    // }
+    // else{
+    //   this._setUnchecked();
+    // }
   },
 
   _setChecked: function() {
@@ -64,6 +55,6 @@ App.View.extend({
 
   _onChange: function(e) {
     this._isChecked = !this._isChecked;
-    this.data.model.set(this.data.attribute, this.data.value);
+    this.data.model.set(this.data.attribute, this._isChecked);
   },
 });

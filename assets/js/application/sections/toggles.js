@@ -4,6 +4,7 @@ App.View.extend({
   init_functions: [
     'setupCheckboxes',
     'setupRadios',
+    'setupIcons',
   ],
 
   setupCheckboxes: function(){
@@ -26,7 +27,6 @@ App.View.extend({
   setupRadios: function(){
     c = this.components;
     m = new App.Model({gender: 'female'});
-    window.model = m;
 
     c.radio_one = {
       model: m,
@@ -41,12 +41,23 @@ App.View.extend({
       label: 'Female',
       value: 'female',
     };
+  },
 
-    c.radio_three = {
+  setupIcons: function(){
+    c = this.components;
+    m = new App.Model({power: true});
+    window.model = m;
+
+    c.icon_one = {
       model: m,
-      attribute: 'three',
-      label: 'Third',
-      value: 'party',
+      attribute: 'bold',
+      icon: 'B'
+    };
+
+    c.icon_two = {
+      model: m,
+      attribute: 'power',
+      icon: 'power_settings_new',
     };
   },
 });
