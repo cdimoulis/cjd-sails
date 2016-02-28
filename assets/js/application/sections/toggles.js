@@ -8,7 +8,6 @@ App.View.extend({
   setupToggles: function(){
     this.components = c = {};
     m = new App.Model({second: true});
-    window.model = m;
 
     c.checkbox_one = {
       model: m,

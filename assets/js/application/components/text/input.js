@@ -32,6 +32,8 @@ App.View.extend({
   ],
 
   setup: function() {
+    _.bindAll(this,'_handleModelUpdate','_onInput');
+    
     this.display = {};
     this.display.label = this.data.label;
     this.display.id = this.cid+'text_input';
@@ -40,6 +42,9 @@ App.View.extend({
     if (this.data.float_label) {
       this.$el.addClass('mdl-textfield--floating-label');
     }
+
+    this.listenTo(this.data.model,'change:'+this.data.attribute,
+                  this._handleModelUpdate);
   },
 
   setupPattern: function() {
@@ -50,6 +55,17 @@ App.View.extend({
     }
     else {
       this.display.pattern = this.data.pattern;
+    }
+  },
+
+  _handleModelUpdate: function(model,value){
+    var val = this.data.model.get(this.data.attribute);
+    this.$el.find('input#'+this.display.id).val(val);
+    if (_.isEmpty(val)){
+      this.$el.removeClass('is-dirty');
+    }
+    else{
+      this.$el.addClass('is-dirty');
     }
   },
 

@@ -22,6 +22,20 @@ App.View.extend({
     this.display.id = this.cid+'expandable_input';
     this.display.value = this.data.model.get(this.data.attribute);
     this.display.icon = this.data.icon;
+
+    this.listenTo(this.data.model,'change:'+this.data.attribute,
+                  this._handleModelUpdate);
+  },
+
+  _handleModelUpdate: function(model,value){
+    var val = this.data.model.get(this.data.attribute);
+    this.$el.find('input#'+this.display.id).val(val);
+    if (_.isEmpty(val)){
+      this.$el.removeClass('is-dirty');
+    }
+    else{
+      this.$el.addClass('is-dirty');
+    }
   },
 
   _onInput: function(e) {
