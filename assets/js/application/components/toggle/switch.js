@@ -10,6 +10,8 @@ App.View.extend({
   data_source:[
     {key: 'model', required: true},
     {key: 'attribute', required: true},
+    {key: 'icon', required: false},
+    {key: 'label', required: false},
   ],
   init_functions:[
     'setup',
@@ -20,6 +22,8 @@ App.View.extend({
     _.bindAll(this, '_onChange','_handleModelChange');
     this.display = {};
     this.display.id = this.cid+'toggle_switch';
+    this.display.label = this.data.label;
+    this.display.icon = this.data.icon;
     this.$el.attr('for',this.display.id);
 
     this._isChecked = this.data.model.get(this.data.attribute);

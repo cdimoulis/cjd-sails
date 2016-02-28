@@ -26,9 +26,14 @@ App.View.extend({
 
     c.third_button = {
       text: 'flight_takeoff',
-      raised: false,
-      style: 'fab-mini',
+      style: 'fab',
       color: 'primary',
+    };
+
+    c.fourth_button = {
+      text: 'flight_landing',
+      style: 'fab-mini',
+      color: 'accent',
     };
   },
 

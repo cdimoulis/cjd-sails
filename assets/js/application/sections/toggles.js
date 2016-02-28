@@ -51,7 +51,7 @@ App.View.extend({
     c.icon_one = {
       model: m,
       attribute: 'bold',
-      icon: 'settings_bold'
+      icon: 'format_bold'
     };
 
     c.icon_two = {
@@ -69,11 +69,13 @@ App.View.extend({
     c.switch_one = {
       model: m,
       attribute: 'power',
+      icon: 'alarm',
     };
 
     c.switch_two = {
       model: m,
       attribute: 'on',
+      label: 'Power',
     };
   },
 });
