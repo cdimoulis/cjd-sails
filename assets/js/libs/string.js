@@ -13,3 +13,8 @@ String.prototype.toCamel = function() {
     return group1.toUpperCase();
   });
 };
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};

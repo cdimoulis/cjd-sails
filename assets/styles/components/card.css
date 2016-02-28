@@ -8,3 +8,17 @@
 .cjd-card > .mdl-card__menu .material-icons{
   color: white;
 }
+
+.simple-card > .mdl-card__title,
+.simple-card > .mdl-card__actions,
+.simple-card > .mdl-card__actions > .mdl-button {
+  color: white !important;
+}
+.simple-card > .mdl-card__actions {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+}
+.simple-card > .mdl-card__title > h4 {
+  margin-top: 0;
+}

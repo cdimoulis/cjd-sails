@@ -9,6 +9,15 @@
     {{view 'sections/toggles'}}
   </div>
   <div class='mdl-cell mdl-cell--12-col-phone mdl-cell--3-col'>
-    {{view 'components/card/main' data=card}}
+    <div class='mdl-grid'>
+      <div class='mdl-cell mdl-cell--12-col'>
+        {{view 'components/card/main' data=card}}
+      </div>
+    </div>
+    <div class='mdl-grid'>
+      <div class='mdl-cell mdl-cell--12-col'>
+        {{view 'components/card/simple' data=simple_card}}
+      </div>
+    </div>
   </div>
 </div>

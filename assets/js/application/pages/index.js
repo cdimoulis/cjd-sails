@@ -25,6 +25,15 @@ App.Page.extend({
       menu_icons: menu_icons,
       footer_actions: footer_actions
     };
+
+    this.simple_card = {
+      title: "Your Flight:\nDL 8320\nSTL > BOS",
+      footer_icon: 'flight',
+      footer_action: new App.Model({
+        text: 'Go Fly',
+        action: this._cardAction,
+      }),
+    };
   },
 
   _cardAction: function() {
