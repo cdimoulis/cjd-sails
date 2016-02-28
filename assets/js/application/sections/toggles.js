@@ -2,10 +2,11 @@ App.View.extend({
   name: 'sections/toggles',
 
   init_functions: [
-    'setupToggles',
+    'setupCheckboxes',
+    'setupRadios',
   ],
 
-  setupToggles: function(){
+  setupCheckboxes: function(){
     this.components = c = {};
     m = new App.Model({second: true});
 
@@ -19,6 +20,33 @@ App.View.extend({
       model: m,
       attribute: 'second',
       label: 'Second',
+    };
+  },
+
+  setupRadios: function(){
+    c = this.components;
+    m = new App.Model({gender: 'female'});
+    window.model = m;
+
+    c.radio_one = {
+      model: m,
+      attribute: 'gender',
+      label: 'Male',
+      value: 'male',
+    };
+
+    c.radio_two = {
+      model: m,
+      attribute: 'gender',
+      label: 'Female',
+      value: 'female',
+    };
+
+    c.radio_three = {
+      model: m,
+      attribute: 'three',
+      label: 'Third',
+      value: 'party',
     };
   },
 });

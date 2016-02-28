@@ -48,7 +48,6 @@ App.View.extend({
   setupExpandables: function() {
     c = this.components;
     m = new App.Model({});
-    window.model = m;
 
     c.expand_one = {
       model: m,
