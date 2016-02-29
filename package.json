@@ -35,7 +35,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "postinstall": "bundle install && bower install"
+    "postinstall": "gem install sass && bower install"
   },
   "main": "app.js",
   "repository": {

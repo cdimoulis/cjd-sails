@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     dev: {
       options: {
         trace: true,
-        bundleExec: true,
+        // bundleExec: true,
       },
       files: [{
         expand: true,
