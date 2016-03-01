@@ -77,6 +77,22 @@ Backbone.View = Backbone.View.extend({
     this.$el.attr('data-view-cid',this.cid);
   },
 
+  addView: function(view_name, data, selector){
+    if (!_.has(App.Views,view_name)){
+      console.warn('View '+view_name+'does not exist.');
+      return;
+    }
+    var view = App.Views[view_name]({hash:{data:data}});
+    this.children[view.cid] = view;
+    view.render();
+    view.appendTo(selector);
+  },
+
+  removeView: function(view){
+    view.remove();
+    delete this.children[view.cid];
+  },
+
   _addChildView: function(view) {
     // Find the placeholder for where to put the view's markup
     var selector = view.tagName+'[data-view-name="'+view.name+'"]'+

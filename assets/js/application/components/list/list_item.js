@@ -6,14 +6,19 @@ App.View.extend({
   },
   data_source: [
     {key: 'model', required: true},
+    {key: 'view', required: true},
+    {key: 'view_data', required: true},
   ],
   init_functions: [
     'setup',
   ],
 
   setup: function() {
+    var data = this.data.view_data;
+    data.model = this.data.model;
     this.display = {
-      text: this.data.model.get('text'),
+      view: this.data.view,
+      data: data,
     };
   },
 })

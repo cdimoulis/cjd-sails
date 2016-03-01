@@ -7,6 +7,8 @@ App.View.extend({
   data_source: [
     {key: 'collection', required: true},
     {key: 'attributes', required: false},
+    {key: 'view', required: true},
+    {key: 'view_data', required: true},
   ],
   init_functions: [
     'setup',
@@ -20,12 +22,14 @@ App.View.extend({
   },
 
   _buildConfigs: function() {
-    var display = this.display;
+    var _this = this;
     this.data.collection.each( function(model) {
       data = {
         model: model,
+        view: _this.data.view,
+        view_data: _this.data.view_data,
       };
-      display.list_items[model.cid] = data;
+      _this.display.list_items[model.cid] = data;
     });
   },
 });

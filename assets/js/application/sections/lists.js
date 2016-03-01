@@ -12,6 +12,8 @@ App.View.extend({
 
     c.first_list = {
       collection: collection,
+      view: 'components/list/test/one',
+      view_data: {},
     };
   },
 });
