@@ -1,27 +1,28 @@
 App.View.extend({
   name: 'components/text/expandable',
-  attributes:{
+  attributes: {
     'class': 'mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label',
   },
   events: {
     'input input': '_onInput',
   },
-  data_source:[
+  data_source: [
     {key: 'model', required: true},
     {key: 'attribute', required: true},
     {key: 'icon', required: true},
     {key: 'label', required: false, default: ''},
   ],
-  init_functions:[
+  init_functions: [
     'setup',
   ],
 
   setup: function() {
-    this.display = {};
-    this.display.label = this.data.label;
-    this.display.id = this.cid+'expandable_input';
-    this.display.value = this.data.model.get(this.data.attribute);
-    this.display.icon = this.data.icon;
+    this.display = {
+      label: this.data.label,
+      id: this.cid+'expandable_input',
+      value: this.data.model.get(this.data.attribute),
+      icon: this.data.icon,
+    };
 
     this.listenTo(this.data.model,'change:'+this.data.attribute,
                   this._handleModelUpdate);

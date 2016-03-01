@@ -15,16 +15,17 @@ App.View.extend({
   ],
 
   setup: function() {
-    window.slider = this;
     _.bindAll(this, '_handleModelChange', '_onChange');
     var value = this.data.model.get(this.data.attribute) || 0;
-    this.display = {};
 
-    this.display.id = this.cid+'slider';
-    this.display.value = value;
-    this.display.max = this.data.max;
-    this.display.min = this.data.min;
-    this.display.step = this.data.step;
+    this.display = {
+      id: this.cid+'slider',
+      value: value,
+      max: this.data.max,
+      min: this.data.min,
+      step: this.data.step,
+    };
+
     this.listenTo(this.data.model,'change:'+this.data.attribute,
                   this._handleModelChange);
   },

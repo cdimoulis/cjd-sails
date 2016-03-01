@@ -16,11 +16,10 @@ App.View.extend({
   ],
 
   setup: function() {
-
-    this.display = {};
-
-    this.display.title = this.data.title.replaceAll('\n','<br>');
-    this.display.content = this.data.content;
+    this.display = {
+      title: this.data.title.replaceAll('\n','<br>'),
+      content: this.data.content,
+    };
   },
 
   setupAttributes: function() {

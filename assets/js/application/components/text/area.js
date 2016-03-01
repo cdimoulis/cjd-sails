@@ -19,12 +19,13 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this,'_handleModelUpdate','_onInput');
-    
-    this.display = {};
-    this.display.label = this.data.label;
-    this.display.id = this.cid+'text_area';
-    this.display.value = this.data.model.get(this.data.attribute);
-    this.display.rows = this.data.rows;
+
+    this.display = {
+      label: this.data.label,
+      id: this.cid+'text_area',
+      value: this.data.model.get(this.data.attribute),
+      rows: this.data.rows,
+    };
 
     if (this.data.float_label) {
       this.$el.addClass('mdl-textfield--floating-label');
