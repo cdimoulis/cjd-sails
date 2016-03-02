@@ -27,11 +27,13 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this, '_onChange','_handleModelChange');
-    this.display = {};
-    this.display.id = this.cid+'radio';
-    this.display.label = this.data.label;
-    this.display.group = this.data.model.cid+""+this.data.attribute
-    this.display.value = this.data.value;
+
+    this.display = {
+      id: this.cid+'radio',
+      label: this.data.label,
+      group: this.data.model.cid+""+this.data.attribut,
+      value: this.data.value,
+    };
     this.$el.attr('for',this.display.id);
 
     this._isChecked = this.data.model.get(this.data.attribute) == this.data.value;

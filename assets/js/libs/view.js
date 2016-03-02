@@ -77,6 +77,24 @@ Backbone.View = Backbone.View.extend({
     this.$el.attr('data-view-cid',this.cid);
   },
 
+  addView: function(view_name, data, selector){
+    if (!_.has(App.Views,view_name)){
+      console.warn('View '+view_name+'does not exist.');
+      return;
+    }
+    var view = new App.Views[view_name]({hash:{data:data}});
+    this.children[view.cid] = view;
+    view.render();
+    $selector = this.$el.find(selector);
+    view.appendTo($selector);
+    return view;
+  },
+
+  removeView: function(view){
+    view.remove();
+    delete this.children[view.cid];
+  },
+
   _addChildView: function(view) {
     // Find the placeholder for where to put the view's markup
     var selector = view.tagName+'[data-view-name="'+view.name+'"]'+
@@ -97,6 +115,7 @@ Backbone.View = Backbone.View.extend({
 
     // Register dynamic elements for mdl
     componentHandler.upgradeElements(this.el);
+    this.$el.trigger('rendered',this);
     return this;
   },
 

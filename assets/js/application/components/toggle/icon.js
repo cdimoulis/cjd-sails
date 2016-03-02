@@ -19,9 +19,11 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this, '_onChange','_handleModelChange');
-    this.display = {};
-    this.display.id = this.cid+'toggle_icon';
-    this.display.icon = this.data.icon;
+
+    this.display = {
+      id: this.cid+'toggle_icon',
+      icon: this.data.icon,
+    };
     this.$el.attr('for',this.display.id);
 
     this._isChecked = this.data.model.get(this.data.attribute);

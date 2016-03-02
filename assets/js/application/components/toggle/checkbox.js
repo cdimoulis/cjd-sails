@@ -19,9 +19,11 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this, '_onChange','_handleModelChange');
-    this.display = {};
-    this.display.id = this.cid+'checkbox';
-    this.display.label = this.data.label;
+
+    this.display = {
+      id: this.cid+'checkbox',
+      label: this.data.label,
+    };
 
     this._isChecked = !!this.data.model.get(this.data.attribute);
   },

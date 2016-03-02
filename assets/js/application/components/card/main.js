@@ -18,11 +18,10 @@ App.View.extend({
   ],
 
   setup: function() {
-
-    this.display = {};
-
-    this.display.title = this.data.title;
-    this.display.content = this.data.content;
+    this.display = {
+      title: this.data.title,
+      content: this.data.content,
+    };
   },
 
   setupAttributes: function() {

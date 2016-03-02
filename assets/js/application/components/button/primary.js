@@ -7,10 +7,6 @@ App.View.extend({
   events:{
     'click': '_onClick',
   },
-  init_functions:[
-    'setup',
-    'determinClasses',
-  ],
   data_source:[
     {key: 'text', required: true},
     {key: 'raised', required: false, default: true, options: [true,false]},
@@ -21,14 +17,18 @@ App.View.extend({
     {key: 'icon', required: false, default: false, options: [true,false]},
     {key: 'event_handler', required: false},
   ],
+  init_functions:[
+    'setup',
+    'determinClasses',
+  ],
 
   setup: function() {
-
     _.bindAll(this,'_onClick');
 
-    this.display = {}
-    this.display.text = this.data.text;
-    this.display.icon = false;
+    this.display = {
+      text: this.data.text,
+      icon: false,
+    }
   },
 
   determinClasses: function() {
