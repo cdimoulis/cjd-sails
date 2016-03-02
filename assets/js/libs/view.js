@@ -82,10 +82,12 @@ Backbone.View = Backbone.View.extend({
       console.warn('View '+view_name+'does not exist.');
       return;
     }
-    var view = App.Views[view_name]({hash:{data:data}});
+    var view = new App.Views[view_name]({hash:{data:data}});
     this.children[view.cid] = view;
     view.render();
-    view.appendTo(selector);
+    $selector = this.$el.find(selector);
+    view.appendTo($selector);
+    return view;
   },
 
   removeView: function(view){
@@ -113,6 +115,7 @@ Backbone.View = Backbone.View.extend({
 
     // Register dynamic elements for mdl
     componentHandler.upgradeElements(this.el);
+    this.$el.trigger('rendered',this);
     return this;
   },
 

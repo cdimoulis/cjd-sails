@@ -26,7 +26,8 @@ this.Application = function (options) {
     if (!!page){
       page.render();
       _current_page = page;
-      page.appendTo("#page");
+      $page = $.find('#page');
+      page.appendTo($page);
     }
   };
 

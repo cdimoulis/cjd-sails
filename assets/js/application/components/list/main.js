@@ -4,6 +4,9 @@ App.View.extend({
   attributes: {
     'class': 'mdl-list',
   },
+  events: {
+    'rendered': 'buildConfigs',
+  },
   data_source: [
     {key: 'collection', required: true},
     {key: 'attributes', required: false},
@@ -12,24 +15,42 @@ App.View.extend({
   ],
   init_functions: [
     'setup',
-    '_buildConfigs',
   ],
 
   setup: function() {
-    this.display = {
-      list_items: {},
+    _.bindAll(this, 'buildConfigs', '_addListItem', '_removeListItem');
+    var _this = this;
+    this._views = {
     };
+
+    this.listenTo(this.data.collection, 'add', this._addListItem);
+
+    this.listenTo(this.data.collection, 'remove', this._removeListItem);
   },
 
-  _buildConfigs: function() {
+  buildConfigs: function() {
     var _this = this;
     this.data.collection.each( function(model) {
-      data = {
-        model: model,
-        view: _this.data.view,
-        view_data: _this.data.view_data,
-      };
-      _this.display.list_items[model.cid] = data;
+      _this._addListItem(model);
+    });
+  },
+
+  _addListItem: function(model) {
+    var data = {
+      model: model,
+      view: this.data.view,
+      view_data: this.data.view_data,
+    };
+
+    var view = this.addView('components/list/list_item', data, 'div.list-content');
+    this._views[model.cid] = view;
+  },
+
+  _removeListItem: function(model) {
+    var _this = this;
+    var view = this._views[model.cid];
+    view.$el.fadeOut(400,function(){
+      _this.removeView(view);
     });
   },
 });
