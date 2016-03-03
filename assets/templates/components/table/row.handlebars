@@ -1,0 +1,8 @@
+{{#if data.selectable}}
+  {{view 'components/toggle/checkbox' data=components.checkbox}}
+{{/if}}
+{{#each display.td}}
+<td class='mdl-data-table__cell--non-numeric'>
+  {{data}}
+</td>
+{{/each}}

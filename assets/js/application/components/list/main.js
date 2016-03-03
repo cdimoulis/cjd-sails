@@ -19,12 +19,9 @@ App.View.extend({
 
   setup: function() {
     _.bindAll(this, 'buildConfigs', '_addListItem', '_removeListItem');
-    var _this = this;
-    this._views = {
-    };
+    this._views = {};
 
     this.listenTo(this.data.collection, 'add', this._addListItem);
-
     this.listenTo(this.data.collection, 'remove', this._removeListItem);
   },
 

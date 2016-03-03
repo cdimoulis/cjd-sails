@@ -10,11 +10,13 @@ App.View.extend({
   data_source:[
     {key: 'model', required: true},
     {key: 'attribute', required: true},
+    {key: 'attributes', required: false},
     {key: 'label', required: false, default: ''},
   ],
   init_functions:[
     'setup',
     'setupListeners',
+    'setupAttributes'
   ],
 
   setup: function() {
@@ -31,6 +33,21 @@ App.View.extend({
   setupListeners: function() {
     this.listenTo(this.data.model,'change:'+this.data.attribute,
                   this._handleModelChange);
+  },
+
+  setupAttributes: function() {
+    var _this = this;
+    if (!this.data.attributes){
+      return;
+    }
+    _.each(this.data.attributes.attributes,function(val,attr){
+      if (attr == 'class'){
+        _this.$el.addClass(val);
+      }
+      else{
+        _this.$el.attr(attr,val);
+      }
+    });
   },
 
   _handleModelChange: function(model,value) {
