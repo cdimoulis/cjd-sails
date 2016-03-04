@@ -106,6 +106,10 @@ Backbone.View = Backbone.View.extend({
 
   render: function() {
     var _this = this;
+    // console.trace();
+    _.each(this.children,function(view){
+      _this.removeView(view);
+    })
     this.$el.html(this.template(this));
 
     // Add the children in their dom place
@@ -115,7 +119,7 @@ Backbone.View = Backbone.View.extend({
 
     // Register dynamic elements for mdl
     componentHandler.upgradeElements(this.el);
-    this.$el.trigger('rendered',this);
+    this.trigger('rendered',this);
     return this;
   },
 

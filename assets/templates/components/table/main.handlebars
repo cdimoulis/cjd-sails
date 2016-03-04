@@ -1,7 +1,12 @@
 <div class='mdl-cell--hide-phone'>
-  <table class='{{display.class}}'>
+  <table class='mdl-data-table mdl-shadow--2dp'>
     <thead>
       <tr>
+        {{#if data.selectable}}
+        <th>
+          {{view 'components/toggle/checkbox' data=components.checkbox}}
+        </th>
+        {{/if}}
         {{#each display.columns}}
         <th class='mdl-data-table__cell--non-numeric'>
           {{this}}
