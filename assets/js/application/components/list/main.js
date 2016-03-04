@@ -4,9 +4,6 @@ App.View.extend({
   attributes: {
     'class': 'mdl-list',
   },
-  events: {
-    'rendered': 'buildConfigs',
-  },
   data_source: [
     {key: 'collection', required: true},
     {key: 'attributes', required: false},
@@ -23,6 +20,8 @@ App.View.extend({
 
     this.listenTo(this.data.collection, 'add', this._addListItem);
     this.listenTo(this.data.collection, 'remove', this._removeListItem);
+
+    this.listenTo(this,'rendered',this.buildConfigs);
   },
 
   buildConfigs: function() {

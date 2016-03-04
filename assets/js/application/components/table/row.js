@@ -6,7 +6,6 @@ App.View.extend({
   },
   data_source: [
     {key: 'model', required: true},
-    {key: 'header_checkbox', required: false},
     {key: 'columns', required: true},
     {key: 'selectable', required: false, default: false},
   ],
@@ -20,24 +19,27 @@ App.View.extend({
     var _this = this;
     this.display = {};
     this.components = {};
-    var checkbox = new App.Model();
+    this.checkbox = new App.Model();
 
     this.components.checkbox = {
-      model: checkbox,
+      model: this.checkbox,
       attribute: 'selected',
       attributes: new App.Model({
         'class': 'mdl-data-table__select',
       }),
     };
 
+    // Setup the event listeners
     this.listenTo(this,'rendered',this._rendered);
     this.listenTo(this.data.model,'change',function() {
       _this.buildRowData();
       _this.render()
     });
-    this.listenTo(checkbox,'change:selected',this._triggerSelection);
-    this.listenTo(this.data.header_checkbox,'change:selected',function(model,value) {
-      checkbox.set('selected',value);
+    this.listenTo(this.checkbox,'change:selected',this._triggerSelection);
+    this.listenTo(this.parent,'select:all select:'+this.cid,function(model, value) {
+      opts = {};
+      opts["_local_silent:"+_this.cid] = true;
+      _this.checkbox.set({'selected': value}, opts);
     });
   },
 
@@ -52,8 +54,11 @@ App.View.extend({
     });
   },
 
-  _triggerSelection: function(model,value) {
-    this.trigger('selected',this.data.model,value);
+  _triggerSelection: function(model, value, options) {
+    silent = !!options["_local_silent:"+this.cid];
+    if (!silent) {
+      this.trigger('selected',this.data.model,value);
+    }
     if (value) {
       this.$el.addClass('is-selected');
     }

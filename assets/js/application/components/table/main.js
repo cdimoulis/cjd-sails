@@ -16,7 +16,9 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, 'buildRows', '_addRow', '_removeRow', '_handleRowSelection');
+    _.bindAll(this, 'buildRows', '_addRow', '_removeRow', '_handleRowSelection',
+                  '_handleHeaderCheck', '_clearAll');
+    var _this = this;
     this.display = {};
     this.components = {};
     this._rows = {};
@@ -24,12 +26,11 @@ App.View.extend({
     this.header_checkbox = new App.Model({
       selected: this.data.selected.length == this.data.collection.length
     });
+
+    // Setup Display data
     this.display.columns = this.data.columns
 
-    this.listenTo(this,'rendered',this.buildRows);
-    this.listenTo(this.data.collection, 'add', this._addRow);
-    this.listenTo(this.data.collection, 'remove',this._removeRow);
-
+    // Setup component data
     this.components.checkbox = {
       model: this.header_checkbox,
       attribute: 'selected',
@@ -37,7 +38,40 @@ App.View.extend({
         'class': 'mdl-data-table__select',
       }),
     };
-    window.table = this;
+
+    // Setup the event listeners
+    this.listenTo(this,'rendered',this.buildRows);
+    this.listenTo(this.data.collection, 'sync', this.buildRows);
+    this.listenTo(this.data.collection, 'add', this._addRow);
+    this.listenTo(this.data.collection, 'remove', this._removeRow);
+    this.listenTo(this.data.collection, 'reset', function() {
+
+    })
+    this.listenTo(this.data.selected,'add', function(model) {
+      var row = _this._rows[model.cid];
+      _this.trigger('select:'+row.cid, model, true);
+      _this._handleHeaderCheck()
+    });
+    this.listenTo(this.data.selected, 'remove', function(model) {
+      var row = _this._rows[model.cid];
+      _this.trigger('select:'+row.cid, model, false);
+      _this._handleHeaderCheck()
+    });
+    this.listenTo(this.data.selected, 'reset', function() {
+      console.log('need to reset selected collection');
+    });
+    this.listenTo(this.header_checkbox, 'change:selected', function(model, value, options) {
+      var silent = options["_local_silent:"+_this.cid];
+      if (!silent){
+        _this.trigger('select:all', model, value);
+        if (value) {
+          _this.data.selected.add(_this.data.collection.models);
+        }
+        else {
+          _this.data.selected.reset();
+        }
+      }
+    });
   },
 
   buildRows: function() {
@@ -50,7 +84,6 @@ App.View.extend({
   _addRow: function(model,index) {
     var data = {
       model: model,
-      header_checkbox: this.header_checkbox,
       columns: this.data.columns,
       selectable: this.data.selectable,
     };
@@ -64,18 +97,45 @@ App.View.extend({
   _removeRow: function(model) {
     var _this = this;
     var row = this._rows[model.cid];
+    this.data.selected.remove(model);
     row.$el.fadeOut(400,function() {
       _this.removeView(row);
+      delete _this._rows[model.cid];
+      _this._handleHeaderCheck()
     });
   },
 
   _handleRowSelection: function(model,value) {
-    console.log('selected',value,model.get('name'));
     if (value) {
       this.data.selected.add(model);
     }
     else {
       this.data.selected.remove(model);
     }
+    this._handleHeaderCheck()
+  },
+
+  _handleHeaderCheck: function() {
+    opts = {};
+    opts["_local_silent:"+this.cid] = true;
+    if (this.data.collection.length != 0 &&
+        this.data.selected.length == this.data.collection.length) {
+      this.header_checkbox.set({'selected': true}, opts);
+    }
+    else {
+      this.header_checkbox.set({'selected': false}, opts);
+    }
+  },
+
+  _clearAll: function() {
+    var _this = this;
+    this.data.selected.reset();
+    _.each(this._rows, function(row, key) {
+      row.$el.fadeout(400,function() {
+        _this.removeView(row);
+        _this._handleHeaderCheck();
+      });
+    });
+    this._rows = {};
   },
 });

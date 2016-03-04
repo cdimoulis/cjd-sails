@@ -6,12 +6,13 @@ App.View.extend({
   ],
 
   setup: function() {
-    col = new App.Collection([{name:"Chris", age: 32, nationality: 'greek'}])//,
-                              // {name:"Naomi", age: 30, nationality: 'unknown'},
+    col = new App.Collection([{name:"Chris", age: 32, nationality: 'greek'},
+                              {name:"Naomi", age: 30, nationality: 'unknown'}])//,
                               // {name:"James", age: 1, nationality: 'greek'}]);
     selected = new App.Collection();
     this.components = c = {};
     window.collection = col;
+    window.selected = selected;
 
     c.table = {
       collection: col,

@@ -10,6 +10,7 @@ Backbone.View = Backbone.View.extend({
     this.template = App.Templates[this.name];
     this.data = {};
     this.children = {};
+    this.parent = options.parent;
 
     this._processData(options.hash || {});
     this._processInitFunctions();
@@ -82,7 +83,7 @@ Backbone.View = Backbone.View.extend({
       console.warn('View '+view_name+'does not exist.');
       return;
     }
-    var view = new App.Views[view_name]({hash:{data:data}});
+    var view = new App.Views[view_name]({parent: this, hash: {data: data}});
     this.children[view.cid] = view;
     view.render();
     $selector = this.$el.find(selector);
