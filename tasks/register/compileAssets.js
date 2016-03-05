@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compileAssets', [
 		'bower:install',
     'clean:dev',
-    'jst:dev',
+    // 'jst:dev',
     'handlebars:dev',  // THIS IS TO RUN THE HANDLEBARS GRUNT TASK FOR CLIENT SIDE TEMPLATES
     'less:dev',
     'sass:dev',
