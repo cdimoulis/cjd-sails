@@ -17,7 +17,9 @@ module.exports = function(grunt) {
     //   dest: '.tmp/public/min/dependencies.min.js'
     // },
     js: {
-      src: ['.tmp/public/concat/production.js'],
+      src: ['.tmp/public/concat/dependencies.js',
+            '.tmp/public/concat/templates.js',
+            '.tmp/public/concat/production.js'],
       dest: '.tmp/public/min/production.min.js'
     }
   });
