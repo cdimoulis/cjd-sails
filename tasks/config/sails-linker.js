@@ -188,6 +188,31 @@ module.exports = function(grunt) {
       }
     },
 
+    prodDependenciesJsRelativeJade: {
+      options: {
+        startTag: '// DEPENDENCIES',
+        endTag: '// END DEPENDENCIES',
+        fileTmpl: 'script(src="%s")',
+        appRoot: '.tmp/public',
+        relative: true
+      },
+      files: {
+        'views/**/*.jade': ['.tmp/public/min/dependencies.min.js']
+      }
+    },
+
+    prodDependenciesJsJade: {
+      options: {
+        startTag: '// DEPENDENCIES',
+        endTag: '// END DEPENDENCIES',
+        fileTmpl: 'script(src="%s")',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jade': ['.tmp/public/min/dependencies.min.js']
+      }
+    },
+
     devJsJade: {
       options: {
         startTag: '// SCRIPTS',
