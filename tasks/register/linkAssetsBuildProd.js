@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     'sails-linker:prodJsRelative',
     'sails-linker:prodStylesRelative',
     'sails-linker:devTpl',
-    'sails-linker:prodDependenciesJsRelativeJade',
+    // 'sails-linker:prodDependenciesJsRelativeJade',
     'sails-linker:prodJsRelativeJade',
     'sails-linker:prodStylesRelativeJade',
     'sails-linker:devTplJade'
