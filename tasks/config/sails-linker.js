@@ -330,6 +330,18 @@ module.exports = function(grunt) {
       files: {
         'views/**/*.jade': require('../pipeline').templateFilesToInject
       }
+    },
+
+    prodTplJade: {
+      options: {
+        startTag: '// TEMPLATES',
+        endTag: '// TEMPLATES END',
+        fileTmpl: 'script(type="text/javascript", src="%s")',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        'views/**/*.jade': ['.tmp/public/min/templates.min.js']
+      }
     }
   });
 
