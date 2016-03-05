@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     },
     templates: {
       src: ['.tmp/public/concat/templates.js'],
-      dest: ['.tmp/public/min/templates.min.js']
+      dest: '.tmp/public/min/templates.min.js'
     },
     js: {
       src: ['.tmp/public/concat/production.js'],
