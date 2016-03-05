@@ -14,6 +14,9 @@
  *   https://github.com/gruntjs/grunt-contrib-concat
  *
  */
+
+var _ = require('lodash');
+
 module.exports = function(grunt) {
 
   grunt.config.set('concat', {
@@ -22,9 +25,9 @@ module.exports = function(grunt) {
     //   dest: '.tmp/public/concat/dependencies.js'
     // },
     js: {
-      src: [require('../pipeline').jsDependenciesToInject,
+      src: _.flatten([require('../pipeline').jsDependenciesToInject,
             require('../pipeline').templateFilesToInject,
-            require('../pipeline').jsFilesToInject],
+            require('../pipeline').jsFilesToInject]),
       dest: '.tmp/public/concat/production.js'
     },
     css: {
