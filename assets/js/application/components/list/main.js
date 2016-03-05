@@ -15,16 +15,26 @@ App.View.extend({
   ],
 
   setup: function() {
-    _.bindAll(this, 'buildConfigs', '_addListItem', '_removeListItem');
+    _.bindAll(this, 'buildItems', '_addListItem', '_removeListItem',
+              '_clearAll');
+    var _this = this;
     this._views = {};
 
+    this.listenTo(this.data.collection, 'sync', this.buildItems);
     this.listenTo(this.data.collection, 'add', this._addListItem);
     this.listenTo(this.data.collection, 'remove', this._removeListItem);
-
-    this.listenTo(this,'rendered',this.buildConfigs);
+    this.listenTo(this.data.collection, 'reset', function() {
+      _this._clearAll();
+      _this.buildItems();
+    });
+    this.listenTo(this.data.collection, 'sort', function() {
+      _this._clearAll();
+      _this.buildItems();
+    });
+    this.listenTo(this, 'rendered', this.buildItems);
   },
 
-  buildConfigs: function() {
+  buildItems: function() {
     var _this = this;
     this.data.collection.each( function(model) {
       _this._addListItem(model);
@@ -32,6 +42,10 @@ App.View.extend({
   },
 
   _addListItem: function(model) {
+    if (_.has(this._views, model.cid)){
+      return;
+    }
+
     var data = {
       model: model,
       view: this.data.view,
@@ -47,6 +61,17 @@ App.View.extend({
     var view = this._views[model.cid];
     view.$el.fadeOut(400,function(){
       _this.removeView(view);
+      delete _this._views[model.cid];
     });
+  },
+
+  _clearAll: function() {
+    var _this = this;
+    _.each(this._views, function(view, key) {
+      view.$el.fadeOut(400, function() {
+        _this.removeView(view);
+      });
+    });
+    this._views = {};
   },
 });

@@ -47,7 +47,12 @@ App.View.extend({
     this.listenTo(this.data.collection, 'reset', function() {
       _this._clearAll();
       _this.buildRows();
-    })
+      _this._handleHeaderCheck();
+    });
+    this.listenTo(this.data.collection, 'sort', function() {
+      _this._clearAll();
+      _this.buildRows();
+    });
     this.listenTo(this.data.selected,'add', function(model) {
       var row = _this._rows[model.cid];
       _this.trigger('select:'+row.cid, model, true);
@@ -145,9 +150,9 @@ App.View.extend({
 
   _clearAll: function() {
     var _this = this;
-    this.data.selected.reset();
+    // this.data.selected.reset();
     _.each(this._rows, function(row, key) {
-      row.$el.fadeout(400,function() {
+      row.$el.fadeOut(400,function() {
         _this.removeView(row);
         _this._handleHeaderCheck();
       });
