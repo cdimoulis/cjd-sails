@@ -45,12 +45,13 @@ App.View.extend({
     this.listenTo(this.data.collection, 'add', this._addRow);
     this.listenTo(this.data.collection, 'remove', this._removeRow);
     this.listenTo(this.data.collection, 'reset', function() {
-
+      _this._clearAll();
+      _this.buildRows();
     })
     this.listenTo(this.data.selected,'add', function(model) {
       var row = _this._rows[model.cid];
       _this.trigger('select:'+row.cid, model, true);
-      _this._handleHeaderCheck()
+      _this._handleHeaderCheck();
     });
     this.listenTo(this.data.selected, 'remove', function(model) {
       var row = _this._rows[model.cid];
@@ -58,7 +59,17 @@ App.View.extend({
       _this._handleHeaderCheck()
     });
     this.listenTo(this.data.selected, 'reset', function() {
-      console.log('need to reset selected collection');
+      _this.trigger('select:all', _this.header_checkbox, false);
+      _this.data.selected.each( function(model) {
+        var row = _this._rows[model.cid];
+        if (!row){
+          _this.data.selected.remove(model);
+        }
+        else{
+          _this.trigger('select:'+row.cid, model, true);
+        }
+      });
+      _this._handleHeaderCheck();
     });
     this.listenTo(this.header_checkbox, 'change:selected', function(model, value, options) {
       var silent = options["_local_silent:"+_this.cid];
@@ -82,10 +93,15 @@ App.View.extend({
   },
 
   _addRow: function(model,index) {
+    if (_.has(this._rows,model.cid)){
+      return;
+    }
+
     var data = {
       model: model,
       columns: this.data.columns,
       selectable: this.data.selectable,
+      selected: this.data.selected.contains(model),
     };
 
     var row = this.addView('components/table/row', data, 'tbody');

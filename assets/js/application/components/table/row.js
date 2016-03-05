@@ -8,6 +8,7 @@ App.View.extend({
     {key: 'model', required: true},
     {key: 'columns', required: true},
     {key: 'selectable', required: false, default: false},
+    {key: 'selected', required: false, default: false},
   ],
   init_functions: [
     'setup',
@@ -19,7 +20,9 @@ App.View.extend({
     var _this = this;
     this.display = {};
     this.components = {};
-    this.checkbox = new App.Model();
+    this.checkbox = new App.Model({
+      selected: this.data.selected,
+    });
 
     this.components.checkbox = {
       model: this.checkbox,
