@@ -10,6 +10,7 @@ Backbone.View = Backbone.View.extend({
     this.template = App.Templates[this.name];
     this.data = {};
     this.children = {};
+    this.parent = options.parent;
 
     this._processData(options.hash || {});
     this._processInitFunctions();
@@ -82,7 +83,7 @@ Backbone.View = Backbone.View.extend({
       console.warn('View '+view_name+'does not exist.');
       return;
     }
-    var view = new App.Views[view_name]({hash:{data:data}});
+    var view = new App.Views[view_name]({parent: this, hash: {data: data}});
     this.children[view.cid] = view;
     view.render();
     $selector = this.$el.find(selector);
@@ -106,6 +107,10 @@ Backbone.View = Backbone.View.extend({
 
   render: function() {
     var _this = this;
+    // console.trace();
+    _.each(this.children,function(view){
+      _this.removeView(view);
+    })
     this.$el.html(this.template(this));
 
     // Add the children in their dom place
@@ -115,7 +120,7 @@ Backbone.View = Backbone.View.extend({
 
     // Register dynamic elements for mdl
     componentHandler.upgradeElements(this.el);
-    this.$el.trigger('rendered',this);
+    this.trigger('rendered',this);
     return this;
   },
 

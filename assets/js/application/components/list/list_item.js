@@ -5,9 +5,6 @@ App.View.extend({
     'class': 'mdl-list__item',
     'style': 'display: none',
   },
-  events: {
-    'rendered': '_rendered',
-  },
   data_source: [
     {key: 'model', required: true},
     {key: 'view', required: true},
@@ -25,6 +22,8 @@ App.View.extend({
       view: this.data.view,
       data: data,
     };
+
+    this.listenTo(this,'rendered',this._rendered);
   },
 
   _rendered: function() {

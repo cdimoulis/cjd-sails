@@ -6,7 +6,7 @@ App.View.extend({
   ],
 
   setupLists: function(){
-    collection = new App.Collection();
+    var collection = new App.Collection();
     collection.add([{text:'one'},{text:'two'},{text:'three'},{text:'four'}]);
     this.components = c = {};
 
