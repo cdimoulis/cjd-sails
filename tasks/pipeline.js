@@ -44,7 +44,7 @@ var jsDependenciesToInject = [
 var jsFilesToInject = [
 
   // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
+  // 'js/dependencies/sails.io.js',
 
 
   /*
@@ -52,7 +52,7 @@ var jsFilesToInject = [
   */
 
 
-  
+
   // The rest of the vendor files
   'vendor/**/*.js',
 
@@ -62,7 +62,7 @@ var jsFilesToInject = [
   * Application specific requirements
   ***********/
   'js/libs/**/*.js',
-  
+
   'js/application/application.js',
   'js/application/init.js',
   'js/application/router.js',
@@ -128,5 +128,3 @@ module.exports.templateFilesToInject = templateFilesToInject.map(function(tplPat
   // Originally...
   // return require('path').join('assets/',tplPath);
 });
-
-
